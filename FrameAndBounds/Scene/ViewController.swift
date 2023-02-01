@@ -28,10 +28,11 @@ class ViewController: UIViewController {
         return imageView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        
+        configureNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,22 @@ private extension ViewController {
         
         subView.bounds.origin.x = 60
         subView.bounds.origin.y = 50
+    }
+    
+    func configureNavigation() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "arrow.forward"),
+            style: .done,
+            target: self,
+            action: #selector(didTapNextButton)
+        )
+    }
+    
+    
+    @objc
+    func didTapNextButton() {
+        let scrollViewController = ScrollViewController()
+        navigationController?.pushViewController(scrollViewController, animated: true)
     }
 }
 
